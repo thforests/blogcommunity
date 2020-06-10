@@ -11,4 +11,7 @@
 
 ## 工具
 [Git](https://git-scm.com/download)  
-[Visual Pardigml](https://www.visual-paradigm.com)
+[Visual Pardigml](https://www.visual-paradigm.com)  
+[flayway](https://flywaydb.org/getstarted/firststeps/maven)  
+[Lombok](https://projectlombok.org/setup/maven)  
+[ThymeLeaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration)
