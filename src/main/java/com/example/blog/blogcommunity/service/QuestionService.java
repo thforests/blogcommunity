@@ -1,5 +1,6 @@
 package com.example.blog.blogcommunity.service;
 
+import com.example.blog.blogcommunity.dto.PaginationDTO;
 import com.example.blog.blogcommunity.dto.QuestionDTO;
 import com.example.blog.blogcommunity.mapper.QuestionMapper;
 import com.example.blog.blogcommunity.mapper.UserMapper;
@@ -21,17 +22,37 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<QuestionDTO> list() {
-        List <Question> questions = questionMapper.list();
-        List<QuestionDTO> questionDTOList = new ArrayList <>();
+    public PaginationDTO list(Integer page, Integer size) {
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = questionMapper.count();
+        paginationDTO.setPagination(totalCount, page, size);
+
+        if (page <= 1) {
+            page = 1;
+        }
+
+        if (page > paginationDTO.getTotalPage()) {
+            page = paginationDTO.getTotalPage();
+        }
+        //indexController中设置默认值page=1，size=5
+        Integer offset = size * (page - 1);
+
+        List <Question> questions = questionMapper.list(offset, size);
+        List <QuestionDTO> questionDTOList = new ArrayList <>();
+
+
         for (Question question : questions) {
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             //将question的属性快速拷贝到questionDTO
-            BeanUtils.copyProperties(question,questionDTO);
+            BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+        paginationDTO.setQuestions(questionDTOList);
+
+
+        return paginationDTO;
     }
 }

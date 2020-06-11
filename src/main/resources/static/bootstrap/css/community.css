@@ -3,7 +3,8 @@ body{
 }
 .main{
     background-color: white;
-    margin: 30px;
+    margin: 60px;
+    margin-top: 30px;
 }
 .btn-publish{
     float: right;
