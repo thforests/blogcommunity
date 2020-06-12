@@ -47,6 +47,11 @@ public class AuthorizeController {
         accessTokenTDO.setState(state);
         String accessToken =  githubProvider.getAccessToken(accessTokenTDO);
         GithubUser githubuser = githubProvider.getUser(accessToken);
+
+        //此处登陆时做验证，避免user表中重复创建相同user
+
+
+
         if (githubuser!=null){
             User user = new User();
             String token = UUID.randomUUID().toString();
