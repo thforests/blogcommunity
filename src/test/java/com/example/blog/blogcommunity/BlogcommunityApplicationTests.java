@@ -19,7 +19,7 @@ class BlogcommunityApplicationTests {
 
     @Test
     void test(){
-        User user = userMapper.findById(65);
+        User user = userMapper.selectByPrimaryKey(65);
 
         System.out.println(user.getIconUrl());
     }
