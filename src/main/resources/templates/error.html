@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:height="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<head>
+    <title>发布</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../bootstrap/css/community.css">
+
+    <script src="../jQuery/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+
+</head>
+<body>
+<div th:insert="~{nav::headnav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+    <div class="jumbotron">
+        <h1>出错啦！！！</h1>
+        <p th:text="${message}">服务器太热啦，等会再试试吧</p>
+        <p><a class="btn btn-primary btn-lg" href="/" role="button" >回到主页</a></p>
+    </div>
+    </div>
+</div>
+</body>
+</html>

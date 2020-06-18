@@ -40,43 +40,33 @@ public class AuthorizeController {
 
 
     @GetMapping("/callback")
-    public String callback(@RequestParam(name="code")String code,
-                           @RequestParam(name="state") String state,
-                           HttpServletRequest request,
-                           HttpServletResponse response){
-        AccessTokenDTO accessTokenTDO = new AccessTokenDTO();
-        accessTokenTDO.setClient_id(clientId);
-        accessTokenTDO.setCode(code);
-        accessTokenTDO.setRedirect_uri(redirect_uri);
-        accessTokenTDO.setClient_secret(client_Sercret);
-        accessTokenTDO.setState(state);
-        String accessToken =  githubProvider.getAccessToken(accessTokenTDO);
-        GithubUser githubuser = githubProvider.getUser(accessToken);
-
-        //此处登陆时做验证，避免user表中重复创建相同user
-
-
-
-        if (githubuser!=null &&githubuser.getId()!=null){
+    public String callback(@RequestParam(name = "code") String code,
+                           @RequestParam(name = "state") String state,
+                           HttpServletResponse response) {
+        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        accessTokenDTO.setClient_id(clientId);
+        accessTokenDTO.setClient_secret(client_Sercret);
+        accessTokenDTO.setCode(code);
+        accessTokenDTO.setRedirect_uri(redirect_uri);
+        accessTokenDTO.setState(state);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        if (githubUser != null && githubUser.getId() != null) {
             User user = new User();
             String token = UUID.randomUUID().toString();
             user.setToken(token);
-            user.setName(githubuser.getName());
-            user.setAccountId(String.valueOf(githubuser.getId()));
-            user.setIconUrl(githubuser.getAvatar_url());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setIconUrl(githubUser.getAvatar_url());
             userService.createOrupdate(user);
-            System.out.println(user);
-         //   request.getSession().setAttribute("user",user);
-
-            response.addCookie(new Cookie("token",token));
-
+            Cookie cookie = new Cookie("token", token);
+            cookie.setMaxAge(60 * 60 * 24 * 30 * 6);
+            response.addCookie(cookie);
             return "redirect:/";
-
-        }else{
-            //登录失败，重新登录
+        } else {
+            // 登录失败，重新登录
             return "redirect:/";
         }
-
     }
 
     @GetMapping("/logout")

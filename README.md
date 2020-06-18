@@ -15,7 +15,9 @@
 [Git](https://git-scm.com/download)  
 [Visual Pardigml](https://www.visual-paradigm.com)  
 [flayway](https://flywaydb.org/getstarted/firststeps/maven)  
-[Lombok](https://projectlombok.org/setup/maven)  
+[Lombok](https://projectlombok.org/setup/maven)    
+[postman](chrome-extension://coohjcphdfgbiolnekdpbcijmhambjff/index.html)  
+[谷歌访问助手/提取：frja](https://pan.baidu.com/s/1GX_-eJv4lTGieNXujgOogA)
 
-
+mvn flyway:migrate
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
