@@ -1,0 +1,10 @@
+package com.example.blog.blogcommunity.dto;
+
+import lombok.Data;
+
+@Data
+public class CommentCreateDTO {
+    private Long parentId;
+    private String content;
+    private Integer type;
+}

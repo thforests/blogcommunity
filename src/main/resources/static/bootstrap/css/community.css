@@ -34,3 +34,59 @@ body{
 .jumbotron{
     margin: -15px;
 }
+
+.name-next{
+    padding-top: 10px;
+}
+
+.comment{
+    margin:10px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menu{
+    color: #999;
+    margin-top: 5px;
+}
+.menu .icon{
+    margin-right: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+.menu .comment-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon :hover {
+    color: #499ef3;
+}
+
+.menu .active {
+    color: #499ef3;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
+
+
+.sub-comments {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sub-comments .btn{
+    margin: 10px 0;
+}
+
+.question-title {
+    margin-top: 25px;
+}
+

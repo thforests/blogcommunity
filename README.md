@@ -9,7 +9,8 @@
 [Github OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
 [ThymeLeaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#iteration)
 [mybatis-generator](http://mybatis.org/generator/running/runningWithMaven.html)
-[h2](https://h2database.com/html/main.html)
+[h2](https://h2database.com/html/main.html)  
+[jQuery](https://api.jquery.com/)
 
 ## 工具
 [Git](https://git-scm.com/download)  
