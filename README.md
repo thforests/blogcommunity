@@ -20,5 +20,5 @@
 [postman](chrome-extension://coohjcphdfgbiolnekdpbcijmhambjff/index.html)  
 [谷歌访问助手/提取：frja](https://pan.baidu.com/s/1GX_-eJv4lTGieNXujgOogA)
 
-mvn flyway:migrate
+mvn flyway:migrate  
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
