@@ -4,10 +4,7 @@ import com.example.blog.blogcommunity.dto.CommentDTO;
 import com.example.blog.blogcommunity.enums.CommentTypeEnum;
 import com.example.blog.blogcommunity.exception.CustomizeErrorCode;
 import com.example.blog.blogcommunity.exception.CustomizeException;
-import com.example.blog.blogcommunity.mapper.CommentMapper;
-import com.example.blog.blogcommunity.mapper.QuestionExtMapper;
-import com.example.blog.blogcommunity.mapper.QuestionMapper;
-import com.example.blog.blogcommunity.mapper.UserMapper;
+import com.example.blog.blogcommunity.mapper.*;
 import com.example.blog.blogcommunity.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,9 @@ public class CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    private CommentExtMapper commentExtMapper;
 
     @Autowired
     private QuestionMapper questionMapper;
@@ -53,6 +53,11 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+            // 增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -63,6 +68,7 @@ public class CommentService {
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
         }
+
     }
 
     public List<CommentDTO> listByTargetId(Long id,CommentTypeEnum type) {
