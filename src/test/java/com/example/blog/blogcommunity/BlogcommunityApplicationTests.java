@@ -1,5 +1,6 @@
 package com.example.blog.blogcommunity;
 
+import com.example.blog.blogcommunity.enums.CommentTypeEnum;
 import com.example.blog.blogcommunity.mapper.QuestionMapper;
 import com.example.blog.blogcommunity.mapper.UserMapper;
 import com.example.blog.blogcommunity.model.Question;
@@ -40,4 +41,12 @@ class BlogcommunityApplicationTests {
         System.out.println(question);
     }
 
+
+    @Test
+    void testEnum(){
+        System.out.println(CommentTypeEnum.COMMENT.getType());
+        Integer m = 123;
+        Integer n = 123;
+        System.out.println(m == n);
+    }
 }
