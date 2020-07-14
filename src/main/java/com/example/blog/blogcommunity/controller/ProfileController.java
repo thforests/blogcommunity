@@ -1,8 +1,8 @@
 package com.example.blog.blogcommunity.controller;
 
 import com.example.blog.blogcommunity.dto.PaginationDTO;
-import com.example.blog.blogcommunity.mapper.UserMapper;
 import com.example.blog.blogcommunity.model.User;
+import com.example.blog.blogcommunity.service.NotificationService;
 import com.example.blog.blogcommunity.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,9 @@ public class ProfileController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
                           Model model,
@@ -31,15 +34,18 @@ public class ProfileController {
         }
 
         if ("questions".equals(action)) {
-            model.addAttribute("section", "question");
+            model.addAttribute("section", "questions");
             model.addAttribute("sectionname", "我的提问");
+            PaginationDTO paginationDTO = questionService.listmine(user.getId(), page, size);
+            model.addAttribute("pagination", paginationDTO);
         } else if ("replies".equals(action)) {
+            PaginationDTO paginationDTO = notificationService.list(user.getId(), page, size);
             model.addAttribute("section", "replies");
             model.addAttribute("sectionname", "最新回复");
+            model.addAttribute("pagination",paginationDTO);
         }
 
-        PaginationDTO paginationDTO = questionService.listmine(user.getId(), page, size);
-        model.addAttribute("pagination", paginationDTO);
+
         return "profile";
     }
 
