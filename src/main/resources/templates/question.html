@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css?version=20200629">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css?version=20200629">
     <link rel="stylesheet" href="../bootstrap/css/community.css?version=202006290">
+    <link rel="stylesheet" href="../editor-master/css/editormd.css">
 
     <script src="../jQuery/jquery.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="../bootstrap/js/community.js" type="application/javascript"></script>
     <script src="../bootstrap/js/moment.js" type="application/javascript"></script>
+    <script src="../editor-master/editormd.min.js" type="application/javascript"></script>
+    <script src="../editor-master/lib/marked.min.js" ></script>
+    <script src="../editor-master/lib/prettify.min.js" ></script>
 
 
 
@@ -30,9 +34,20 @@
                         阅读数：<span th:text="${question.viewCount}  "></span>
                     </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                 <!--内容-->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                    <textarea style="display:none;" th:text="${question.description}"></textarea>
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        editormd.markdownToHTML("question-view", {});
+                    });
+                </script>
+
                 <!--标签-->
+
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <span class="label label-info question-tag" th:each="tag : ${question.tag.split(',')}">
