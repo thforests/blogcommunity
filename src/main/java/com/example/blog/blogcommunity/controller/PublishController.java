@@ -98,6 +98,6 @@ public class PublishController {
 
         questionService.createOrUpdate(question);
         //发布成功，回到首页
-        return "redirect:/";
+        return "redirect:/question/"+id;
     }
 }

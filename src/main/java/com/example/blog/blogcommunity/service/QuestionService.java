@@ -146,12 +146,13 @@ public class QuestionService {
             } else {
                 //更新
                 Question updateQuestion = new Question();
-                updateQuestion.setGmtCreate(System.currentTimeMillis());
+                updateQuestion.setGmtModified(System.currentTimeMillis());
+                updateQuestion.setDescription(question.getDescription());
                 updateQuestion.setTitle(question.getTitle());
                 updateQuestion.setTag(question.getTag());
                 QuestionExample example = new QuestionExample();
                 example.createCriteria().
-                        andCreatorEqualTo(question.getId());
+                        andIdEqualTo(question.getId());
                 int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
                 if (updated != 1) {
                     throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
