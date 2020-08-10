@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <head>
@@ -38,6 +38,7 @@
                               rows="10"></textarea>
                 </div>
 
+
                 <script type="text/javascript">
                     $(function() {
                         var editor = editormd("question-editor", {
@@ -48,8 +49,16 @@
                             imageUpload: true,
                             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                             imageUploadURL: "/file/upload",
+                            crossDomainUpload : true,  //开启跨越上传
+                            saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
+                            //uploadCallbackURL : "http://localhost:8080/callback"    //上传成功callback地址
                         });
                     });
+                    //
+                    // $(".editormd-image-file").change(function () {
+                    //     var filePath = URL.createObjectURL(this.files[0]);
+                    //     alert(filePath);
+                    // })
                 </script>
 
                 <div class="form-group">

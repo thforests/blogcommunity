@@ -166,9 +166,9 @@
 
                             json = (typeof JSON.parse !== "undefined") ? JSON.parse(json) : eval("(" + json + ")");
 
-                            if(!settings.crossDomainUpload)
+                            if(settings.crossDomainUpload)
                             {
-                              if (json.success === 1)
+                              if (json.success == 1)
                               {
                                   dialog.find("[data-url]").val(json.url);
                               }
