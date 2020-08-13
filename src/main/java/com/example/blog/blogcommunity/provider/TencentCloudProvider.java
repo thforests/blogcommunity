@@ -24,9 +24,12 @@ import java.util.UUID;
 public class TencentCloudProvider {
 
 
+<<<<<<< HEAD
     private static final String secretId = "AKIDEEzThfktUpuPedLUXLtE0VZOxFG1rWu6";
 
     private static final String secretKey = "GHbfCUiGcLlBxTMuXYJO4vCCVKRtB9UZ";
+=======
+>>>>>>> 添加搜索功能
 
     private static final String localhost = "https://moopie-1302226282.cos.ap-nanjing.myqcloud.com";
 
