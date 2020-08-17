@@ -27,7 +27,7 @@ public class ProfileController {
                           Model model,
                           HttpServletRequest request,
                           @RequestParam(name = "page", defaultValue = "1") Integer page,
-                          @RequestParam(name = "size", defaultValue = "10") Integer size) {
+                          @RequestParam(name = "size", defaultValue = "7") Integer size) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             return "redirect:/";

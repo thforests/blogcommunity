@@ -1,10 +1,38 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <title>mylittlemoonpie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../bootstrap/css/community.css?version=20200813">
+    <script src="../jQuery/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
     <title>登录</title>
+    <script>
+        $(function() {
+            $( "#tabs" ).tabs();
+        });
+    </script>
 </head>
 <body>
+<div th:insert="~{nav::headnav}"></div>
+<div class="main" style="height: 500px">
+    <ul class="nav nav-pills" style="padding: 10px">
+        <li role="presentation" ><a href="#tabs-login">登录</a></li>
+        <li role="presentation"><a href="#tabs-regis">注册</a></li>
+    </ul>
 
+    <a href="https://github.com/login/oauth/authorize?client_id=fe9463ce11cae635aec0&redirect_uri=http://localhost:8080/callback&scope=user&state=1">
+        <img src="/img/github_icon.png" style="width: 30px; height: 30px ;margin-left: 25px">
+    </a>
+
+   <!-- <a th:href="@{https://github.com/login/oauth/authorize(client_id='fe9463ce11cae635aec0',redirect_uri='localhost:8080/callback',scope='user',state=1)}">
+        <img src="/img/github_icon.png" style="width: 30px; height: 30px">
+    </a>-->
+</div>>
+
+</div>
 </body>
 </html>

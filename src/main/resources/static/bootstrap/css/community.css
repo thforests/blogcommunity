@@ -117,3 +117,9 @@ body{
     margin: 5px 5px;
     display: inline-block;
 }
+
+.login{
+    width: 90px;
+    text-align: center;
+}
+
