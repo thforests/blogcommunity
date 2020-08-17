@@ -3,12 +3,14 @@ package com.example.blog.blogcommunity.provider;
 import com.alibaba.fastjson.JSON;
 import com.example.blog.blogcommunity.dto.AccessTokenDTO;
 import com.example.blog.blogcommunity.dto.GithubUser;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
+@Slf4j
 public class GithubProvider {
     public String getAccessToken(AccessTokenDTO accessTokenTDO) {
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
@@ -26,7 +28,7 @@ public class GithubProvider {
             System.out.println(token);
             return token;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("getAccessToken error,{}", accessTokenTDO, e);
         }
 
         return null;
@@ -44,6 +46,7 @@ public class GithubProvider {
             GithubUser githubUser = JSON.parseObject(s, GithubUser.class);
             return githubUser;
         } catch (IOException e) {
+            log.error("getUser error,{}", accessToken, e);
         }
         return null;
     }

@@ -12,6 +12,7 @@ import com.qcloud.cos.model.GeneratePresignedUrlRequest;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.region.Region;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -21,6 +22,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class TencentCloudProvider {
 
 
@@ -75,6 +77,7 @@ public class TencentCloudProvider {
             System.out.println(endUrl);
             return endUrl;
         } else {
+          git
             throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAILURE);
         }
 

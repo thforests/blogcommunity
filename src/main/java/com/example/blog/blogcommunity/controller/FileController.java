@@ -3,6 +3,7 @@ package com.example.blog.blogcommunity.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.blog.blogcommunity.dto.FileDTO;
 import com.example.blog.blogcommunity.provider.TencentCloudProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Controller
+@Slf4j
 public class FileController {
     @Autowired
     private TencentCloudProvider tencentCloudProvider;
@@ -38,11 +40,13 @@ public class FileController {
             return fileDTO;
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("uperror",e);
+            FileDTO fileDTO = new FileDTO();
+            fileDTO.setSuccess(1);
+            fileDTO.setUrl("/images/wechat.png");
+            return fileDTO;
         }
-        FileDTO fileDTO = new FileDTO();
-        fileDTO.setSuccess(1);
-        fileDTO.setUrl("/images/wechat.png");
-        return fileDTO;
+
     }
 
     public static File MultiFiletoFile(MultipartFile multipartFile) throws IOException {
