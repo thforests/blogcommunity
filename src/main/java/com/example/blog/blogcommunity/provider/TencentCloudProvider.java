@@ -77,9 +77,11 @@ public class TencentCloudProvider {
             System.out.println(endUrl);
             return endUrl;
         } else {
-          git
             throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAILURE);
         }
+
+
+
 
     }
 
