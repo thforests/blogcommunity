@@ -53,4 +53,19 @@
         </where>
         order by gmt_create desc limit #{page},#{size}
     </select>
+
+    <insert id="insertAfterSearch" parameterType="com.example.blog.blogcommunity.model.Question">
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="AFTER">
+            select id from question where gmt_create = #{gmtCreate,jdbcType=BIGINT}
+        </selectKey>
+
+        insert into QUESTION (ID, TITLE, GMT_CREATE,
+      GMT_MODIFIED, CREATOR, COMMENT_COUNT,
+      VIEW_COUNT, LIKE_COUNT, TAG,
+      DESCRIPTION)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT},
+      #{gmtModified,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{commentCount,jdbcType=INTEGER},
+      #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR},
+      #{description,jdbcType=CLOB})
+    </insert>
 </mapper>

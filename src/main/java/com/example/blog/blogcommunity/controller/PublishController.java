@@ -97,7 +97,13 @@ public class PublishController {
         question.setId(id);
 
 
-        questionService.createOrUpdate(question);
+        int num = questionService.createOrUpdate(question);
+        if (num != 0){
+            System.out.println("diddidd");
+            id =question.getId();
+        }
+
+
         //发布成功，回到首页
         return "redirect:/question/"+id;
     }

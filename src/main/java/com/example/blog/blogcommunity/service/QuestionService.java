@@ -145,7 +145,7 @@ public class QuestionService {
         return questionDTO;
     }
 
-    public void createOrUpdate(Question question) {
+    public int createOrUpdate(Question question) {
         if (question.getId() == null) {
             //创建
             question.setGmtCreate(System.currentTimeMillis());
@@ -153,7 +153,8 @@ public class QuestionService {
             question.setViewCount(0);
             question.setLikeCount(0);
             question.setCommentCount(0);
-            questionMapper.insert(question);
+            int inserted =  questionExtMapper.insertAfterSearch(question);
+            return inserted;
         } else {
             //更新
             Question updateQuestion = new Question();
@@ -168,6 +169,7 @@ public class QuestionService {
             if (updated != 1) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
+            return updated;
         }
     }
 
