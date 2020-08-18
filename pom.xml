@@ -23,9 +23,9 @@
         <profile>
             <id>dev</id>
             <properties>
-                <db.url>jdbc:h2:~/blogcommunity</db.url>
-                <db.user>sa</db.user>
-                <db.password>123</db.password>
+                <db.url>jdbc:mysql://localhost:3306/blogcommunity?serverTimezone=UTC</db.url>
+                <db.user>root</db.user>
+                <db.password>123456</db.password>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -82,11 +82,12 @@
             <version>1.2.70</version>
         </dependency>
 
+
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.20</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -112,16 +113,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.tencentcloudapi</groupId>
-            <artifactId>tencentcloud-sdk-java</artifactId>
-            <version>3.1.101</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tencentcloudapi</groupId>
-            <artifactId>tencentcloud-sdk-java</artifactId>
-            <version>3.1.101</version>
-        </dependency>
+
+
         <dependency>
             <groupId>com.tencentcloudapi</groupId>
             <artifactId>tencentcloud-sdk-java</artifactId>
@@ -148,10 +141,10 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId>
-                        <version>RELEASE</version>
-                        <scope>compile</scope>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.20</version>
+                        <scope>runtime</scope>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -161,12 +154,12 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <dependencies>
-                <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>RELEASE</version>
-                    <scope>compile</scope>
-                </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.20</version>
+                        <scope>runtime</scope>
+                    </dependency>
                 </dependencies>
             </plugin>
 

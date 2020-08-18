@@ -8,32 +8,33 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
 
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/blogcommunity"
-                        userId="sa"
-                        password="123">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/blogcommunity?serverTimezone=UTC"
+                        userId="root"
+                        password="123456">
         </jdbcConnection>
 
-        <javaTypeResolver >
-            <property name="forceBigDecimals" value="false" />
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
         <javaModelGenerator targetPackage="com.example.blog.blogcommunity.model" targetProject="src\main\java">
-            <property name="enableSubPackages" value="true" />
-            <property name="trimStrings" value="true" />
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper"  targetProject="src\main\resources">
-            <property name="enableSubPackages" value="true" />
+        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.blog.blogcommunity.mapper"  targetProject="src\main\java">
-            <property name="enableSubPackages" value="true" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.blog.blogcommunity.mapper"
+                             targetProject="src\main\java">
+            <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User" ></table>
-        <table tableName="question" domainObjectName="Question" ></table>
-        <table tableName="comment" domainObjectName="Comment" ></table>
-        <table tableName="notification" domainObjectName="Notification" ></table>
+        <table tableName="user" domainObjectName="User"></table>
+        <table tableName="question" domainObjectName="Question"></table>
+        <table tableName="comment" domainObjectName="Comment"></table>
+        <table tableName="notification" domainObjectName="Notification"></table>
     </context>
 </generatorConfiguration>

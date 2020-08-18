@@ -34,7 +34,7 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public PaginationDTO list(String search,Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
         if (StringUtils.isNotBlank(search)) {
             String[] tags = StringUtils.split(search, " ");
             String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
@@ -45,7 +45,7 @@ public class QuestionService {
 
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
-        Integer totalCount =  questionExtMapper.countBySearch(questionQueryDTO);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
         Integer totalPage;
         if (totalCount % size != 0) {
@@ -69,11 +69,14 @@ public class QuestionService {
         //indexController中设置默认值page=1，size=5
         Integer offset = size * (page - 1);
 
+        if (offset < 0) {
+            offset = 0;
+        }
         questionQueryDTO.setSize(size);
         questionQueryDTO.setPage(offset);
         List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
 
-        List <QuestionDTO> questionDTOList = new ArrayList <>();
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
 
 
         for (Question question : questions) {
@@ -91,7 +94,8 @@ public class QuestionService {
     }
 
 
-    public PaginationDTO listmine(Long userId, Integer page, Integer size) {  PaginationDTO paginationDTO = new PaginationDTO();
+    public PaginationDTO listmine(Long userId, Integer page, Integer size) {
+        PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
@@ -134,38 +138,38 @@ public class QuestionService {
         if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
-            QuestionDTO questionDTO = new QuestionDTO();
-            User user = userMapper.selectByPrimaryKey(question.getCreator());
-            BeanUtils.copyProperties(question, questionDTO);
-            questionDTO.setUser(user);
-            return questionDTO;
+        QuestionDTO questionDTO = new QuestionDTO();
+        User user = userMapper.selectByPrimaryKey(question.getCreator());
+        BeanUtils.copyProperties(question, questionDTO);
+        questionDTO.setUser(user);
+        return questionDTO;
     }
 
-        public void createOrUpdate(Question question){
-            if (question.getId() == null) {
-                //创建
-                question.setGmtCreate(System.currentTimeMillis());
-                question.setGmtModified(question.getGmtModified());
-                question.setViewCount(0);
-                question.setLikeCount(0);
-                question.setCommentCount(0);
-                questionMapper.insert(question);
-            } else {
-                //更新
-                Question updateQuestion = new Question();
-                updateQuestion.setGmtModified(System.currentTimeMillis());
-                updateQuestion.setDescription(question.getDescription());
-                updateQuestion.setTitle(question.getTitle());
-                updateQuestion.setTag(question.getTag());
-                QuestionExample example = new QuestionExample();
-                example.createCriteria().
-                        andIdEqualTo(question.getId());
-                int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
-                if (updated != 1) {
-                    throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
-                }
+    public void createOrUpdate(Question question) {
+        if (question.getId() == null) {
+            //创建
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtModified());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
+            questionMapper.insert(question);
+        } else {
+            //更新
+            Question updateQuestion = new Question();
+            updateQuestion.setGmtModified(System.currentTimeMillis());
+            updateQuestion.setDescription(question.getDescription());
+            updateQuestion.setTitle(question.getTitle());
+            updateQuestion.setTag(question.getTag());
+            QuestionExample example = new QuestionExample();
+            example.createCriteria().
+                                            andIdEqualTo(question.getId());
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
 
     public void incView(Long id) {
         Question question = new Question();

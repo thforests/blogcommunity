@@ -166,7 +166,7 @@
 
                             json = (typeof JSON.parse !== "undefined") ? JSON.parse(json) : eval("(" + json + ")");
 
-                            if(settings.crossDomainUpload)
+                            if(!settings.crossDomainUpload)
                             {
                               if (json.success == 1)
                               {

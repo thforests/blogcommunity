@@ -49,7 +49,6 @@
                             imageUpload: true,
                             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                             imageUploadURL: "/file/upload",
-                            crossDomainUpload : true,  //开启跨越上传
                             saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
                             //uploadCallbackURL : "http://localhost:8080/callback"    //上传成功callback地址
                         });
@@ -92,7 +91,7 @@
                     </div>
                 </div>
 
-                <span class="alert alert-danger" th:text="${error}" th:if="${session.user==null}"></span>
+                <span class="alert alert-danger" th:text="${er ror}" th:if="${session.user==null}"></span>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
             </form>
         </div>
