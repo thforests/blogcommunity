@@ -12,5 +12,6 @@ import lombok.Data;
 public class QuestionQueryDTO {
     private String search;
     private Integer size;
+    private String tag;
     private Integer page;
 }

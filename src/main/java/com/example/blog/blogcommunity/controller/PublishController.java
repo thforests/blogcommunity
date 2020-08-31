@@ -99,7 +99,6 @@ public class PublishController {
 
         int num = questionService.createOrUpdate(question);
         if (num != 0){
-            System.out.println("diddidd");
             id =question.getId();
         }
 
