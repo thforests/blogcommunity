@@ -39,4 +39,15 @@ public class UserService {
             userMapper.updateByExampleSelective(updateUser, example);
         }
     }
+
+
+    public int registerUser(String username, String passwordAg) {
+        User user = new User();
+        user.setName(username);
+        user.setPassword(passwordAg);
+        int state = userMapper.insert(user);
+        return state;
+    }
+
+    
 }
