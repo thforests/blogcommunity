@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.UserDao">
+  <resultMap id="BaseResultMap" type="generate.User">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ACCOUNT_ID" jdbcType="VARCHAR" property="accountId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TOKEN" jdbcType="VARCHAR" property="token" />
+    <result column="GMT_CREATE" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="GMT_MODIFIED" jdbcType="BIGINT" property="gmtModified" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="bio" jdbcType="VARCHAR" property="bio" />
+    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="mailbox" jdbcType="VARCHAR" property="mailbox" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACCOUNT_ID, `NAME`, TOKEN, GMT_CREATE, GMT_MODIFIED, `password`, bio, icon_url, 
+    mailbox
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="generate.User" useGeneratedKeys="true">
+    insert into user (ACCOUNT_ID, `NAME`, TOKEN, 
+      GMT_CREATE, GMT_MODIFIED, `password`, 
+      bio, icon_url, mailbox
+      )
+    values (#{accountId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{password,jdbcType=VARCHAR}, 
+      #{bio,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}, #{mailbox,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="generate.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="name != null">
+        `NAME`,
+      </if>
+      <if test="token != null">
+        TOKEN,
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE,
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="bio != null">
+        bio,
+      </if>
+      <if test="iconUrl != null">
+        icon_url,
+      </if>
+      <if test="mailbox != null">
+        mailbox,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="bio != null">
+        #{bio,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mailbox != null">
+        #{mailbox,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.User">
+    update user
+    <set>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        GMT_CREATE = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        GMT_MODIFIED = #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="bio != null">
+        bio = #{bio,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mailbox != null">
+        mailbox = #{mailbox,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.User">
+    update user
+    set ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      `NAME` = #{name,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      GMT_CREATE = #{gmtCreate,jdbcType=BIGINT},
+      GMT_MODIFIED = #{gmtModified,jdbcType=BIGINT},
+      `password` = #{password,jdbcType=VARCHAR},
+      bio = #{bio,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      mailbox = #{mailbox,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
